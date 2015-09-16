@@ -60,16 +60,26 @@ namespace WebApplication
             for (var col = 1; col <= totalCols; col++)
             {
                 workSheet.Cells[1, col].Value = products.Columns[col - 1].ColumnName;
+                
+                //Set column width
+                workSheet.Column(col).Width = 30;
             }
             for (var row = 1; row <= totalRows; row++)
             {
                 for (var col = 0; col < totalCols; col++)
                 {
-                    workSheet.Cells[row + 1, col + 1].Value = products.Rows[row - 1][col];
+                    object value = products.Rows[row - 1][col];
+                    workSheet.Cells[row + 1, col + 1].Value = value;
+                    //If the value is DateTime, format to DateTime
+                    if (value.GetType() == typeof(DateTime))
+                    {
+                        workSheet.Cells[row + 1, col + 1].Style.Numberformat.Format = "MM/dd/yyyy hh:mm:ss AM/PM";
+                    }
                 }
             }
             using (var memoryStream = new MemoryStream())
             {
+                
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.AddHeader("content-disposition", "attachment;  filename=products.xlsx");
                 excel.SaveAs(memoryStream);
