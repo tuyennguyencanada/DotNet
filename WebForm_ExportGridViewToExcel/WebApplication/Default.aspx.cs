@@ -12,6 +12,17 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication
 {
+    /// <summary>
+    /// Need MS SQL Server Express 2012
+    /// https://www.microsoft.com/en-ca/download/details.aspx?id=29062
+    /// 
+    /// EPPlus-Create advanced Excel spreadsheets on the server
+    /// http://epplus.codeplex.com/
+    /// 
+    /// CodeProject sample: 
+    /// http://www.codeproject.com/Articles/680421/Create-Read-Edit-Advance-Excel-Report-in
+    ///  
+    /// </summary>
     public partial class Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
